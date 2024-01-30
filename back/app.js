@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
-require('./connect');
 const userRoutes = require('./routes/user');
-
+require('./connect');
 const app = express();
 
 app.use((req, res, next) => {
