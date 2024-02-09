@@ -69,6 +69,7 @@ exports.loginUser = async (req, res, next) => {
 		return crypto.randomBytes(32).toString("hex");
 	};
 	const secretKey = generateSecretKey();
+	module.exports.secretKey = secretKey;
 
 	//generate token
 	const token = jwt.sign({ _id: existingUser._id }, secretKey, {expiresIn: "1h",});
