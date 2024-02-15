@@ -14,6 +14,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.static('images'));
 
@@ -31,9 +34,6 @@ const upload = multer({ storage: storage });
 
 //use multer middleware to handle file uploads
 app.use(upload.single('image')); //'image' is the field name in the request body
-
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
 
 app.use(cors());
 
