@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauces');
+const multer = require('multer');
 require('./connect');
 
 const app = express();
@@ -23,7 +24,7 @@ app.use(express.static('images'));
 //multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/images'); //directory where uploaded files will be stored
+    cb(null, 'images'); //directory where uploaded files will be stored
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); //unique filename for each uploaded file

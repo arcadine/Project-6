@@ -9,8 +9,9 @@ function verifyToken(req, res, next) {
   }
 
   try {
+    console.log(token.split(" ")[1]);
     //verify the token
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token.split(" ")[1], secretKey);
     
     //attach the decoded user information to the request object
     req.user = decoded;

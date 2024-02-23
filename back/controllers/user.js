@@ -3,6 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
+//generate secret key for web token
+const secretKey = crypto.randomBytes(32).toString("hex");
+exports.secretKey = secretKey;
+
 exports.signupUser = async (req, res, next) => {
 	if (!req.body.email || !req.body.password) {
 		return res.status(400).send(new Error("Bad request!"));
@@ -64,16 +68,9 @@ exports.loginUser = async (req, res, next) => {
 		return res.status(401).json({ error: "Invalid credentials" });
 	}
 
-	//generate secret key for web token
-	const generateSecretKey = () => {
-		return crypto.randomBytes(32).toString("hex");
-	};
-	const secretKey = generateSecretKey();
-	module.exports.secretKey = secretKey;
-
 	//generate token
 	const token = jwt.sign({ _id: existingUser._id }, secretKey, {expiresIn: "1h",});
 
 	//return user ID and token
-	return res.status(200).json({ _id: existingUser._id, token });
+	return res.status(200).json({ userId: existingUser._id, token });
 };

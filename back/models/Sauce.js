@@ -25,7 +25,6 @@ const sauceSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
   },
   heat: {
     type: Number,
@@ -40,12 +39,10 @@ const sauceSchema = new Schema({
     required: true,
   },
   usersLiked: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User', //reference to the User model
+    type: String,
   }],
   usersDisliked: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User model
+    type: String,
   }],
 });
 
