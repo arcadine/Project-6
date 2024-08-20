@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { secretKey } = require("./controllers/user");
+const multer = require('multer');
 
 function verifyToken(req, res, next) {
   const token = req.headers.authorization;

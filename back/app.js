@@ -3,7 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauces');
-const multer = require('multer');
 require('./connect');
 
 const app = express();
